@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Meals</title>
+<style>
+    body { font-family: Arial; padding: 20px; }
+    img { width: 150px; margin-top: 10px; border-radius: 8px; }
+    .box { margin-top: 15px; padding: 10px; border: 1px solid #ccc; width: 200px; }
+</style>
+</head>
+<body>
+<h2>Meal Selector</h2>
+
+<button onclick="addMeal()">Add Meal</button>
+<button onclick="suggestMeal()">Suggest a Meal</button>
+
+<div id="result" class="box"></div>
+<script>
+let meals = [
+    { name: "Pizza", img: "https://i.imgur.com/hPz1y2M.jpeg", calories: 266, veg: false },
+    { name: "Salad", img: "https://i.imgur.com/8KU5Q2f.jpeg", calories: 120, veg: true },
+    { name: "Burger", img: "https://i.imgur.com/7JxQx7G.jpeg", calories: 295, veg: false },
+    { name: "Pasta", img: "https://i.imgur.com/0BQ2ZFd.jpeg", calories: 221, veg: true }
+];
+function addMeal() {
+    let name = prompt("Meal name:");
+    let calories = prompt("Calories:");
+    let veg = prompt("Vegetarian? (yes/no):");
+    let img = prompt("Image URL:");
+    if (name && calories && veg && img) {
+ meals.push({
+     name: name,
+     calories: parseInt(calories),
+    veg: veg.toLowerCase() === "yes",
+    img: img
+     });
+ alert("Meal added!");
+}
+}
+
+function suggestMeal() {
+    let r = Math.floor(Math.random() * meals.length);
+let m = meals[r];
+    document.getElementById("result").innerHTML =
+`<strong>${m.name}</strong><br>
+ Calories: ${m.calories}<br>
+ Vegetarian: ${m.veg ? "Yes" : "No"}<br>
+ <img src="${m.img}">`;
+}
+</script>
+</body>
+</html>
